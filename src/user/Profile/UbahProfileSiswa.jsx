@@ -131,7 +131,7 @@ export default class UbahProfileSiswa extends Component {
                     >
                       <img
                         src={
-                          "https://api-sps.my.id/src/public/images/" +
+                          "https://api-sps.my.id/" +
                           this.state.gambar
                         }
                         width={160}
@@ -170,7 +170,7 @@ export default class UbahProfileSiswa extends Component {
                       placeholder="NIS"
                       noValidate
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
@@ -185,7 +185,7 @@ export default class UbahProfileSiswa extends Component {
                       placeholder="Nama Siswa"
                       noValidate
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     />
                   </Form.Group>
 
@@ -198,7 +198,7 @@ export default class UbahProfileSiswa extends Component {
                       name="siswa_gender"
                       value={gender}
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     ></Form.Control>
                   </Form.Group>
                 </Col>
@@ -218,7 +218,7 @@ export default class UbahProfileSiswa extends Component {
                         this.state.d_kelas_nama
                       }
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group className="mb-3">

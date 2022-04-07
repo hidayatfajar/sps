@@ -81,7 +81,7 @@ export default class ProfileSiswa extends Component {
 
                     <img
                       src={
-                        "https://api-sps.my.id/src/public/images/" + this.state.gambar
+                        "https://api-sps.my.id/" + this.state.gambar
                       }
                       width={164}
                       height={164}
@@ -118,7 +118,7 @@ export default class ProfileSiswa extends Component {
                       value={this.state.siswa_nis}
                       placeholder="NIS"
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
@@ -133,7 +133,7 @@ export default class ProfileSiswa extends Component {
                       placeholder="Nama Siswa"
                       noValidate
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
@@ -148,7 +148,7 @@ export default class ProfileSiswa extends Component {
                       placeholder="Masukkan Password"
                       noValidate
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     />
                   </Form.Group>
                 </Col>
@@ -162,7 +162,7 @@ export default class ProfileSiswa extends Component {
                       name="siswa_gender"
                       value={gender}
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group className="mb-3">
@@ -179,7 +179,7 @@ export default class ProfileSiswa extends Component {
                         this.state.d_kelas_nama
                       }
                       onChange={this.handleChange}
-                      readOnly
+                      disabled
                     ></Form.Control>
                   </Form.Group>
 

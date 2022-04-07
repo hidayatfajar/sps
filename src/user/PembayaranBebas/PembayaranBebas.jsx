@@ -141,6 +141,52 @@ export default class PembayaranBebas extends Component {
         },
       },
     ];
+    const detail_mobile = [
+      // {
+      //   dataField: "no_transaksi",
+      //   text: "No Transaksi",
+      // },
+      {
+        dataField: "d_bebas_deskripsi",
+        text: "Deskripsi",
+      },
+      {
+        dataField: "d_bebas_bayar",
+        text: "Nominal",
+      },
+      // {  
+      //   dataField: "d_bebas_tanggal",
+      //   text: "Tanggal",
+      // },
+      // {
+      //   dataField: "admin_id",
+      //   text: "Admin",
+      //   formatter: (cell, row) => {
+      //     if (row.admin_id === "1") {
+      //       return "admin";
+      //     } else {
+      //       return "admin2";
+      //     }
+      //   },
+      // },
+
+      // make a action print
+      {
+        dataField: "d_bebas_id",
+        text: "Action",
+        formatter: (cell, row) => {
+          return (
+            <div>
+              <Link to={`/user/invoice/bebas/${id}/${row.d_bebas_id}`}>
+                <Button variant="outline-warning" size="sm">
+                  <FontAwesomeIcon icon={faPrint} /> Cetak
+                </Button>
+              </Link>
+            </div>
+          );
+        },
+      },
+    ];
     const desktop = [
       {
         text: "Tipe Pembayaran",
@@ -239,32 +285,18 @@ export default class PembayaranBebas extends Component {
         headerAlign: "center"
       },
       {
-        dataField: "Aksi",
         text: "Aksi",
-        formatter: (cellContent, row) => {
+        formatter: (cell, row) => {
+          return (
+            <div>
+              <Button onClick={this.getDetails} variant="outline-success">
+                <FontAwesomeIcon icon={faInfo} /> Info
+              </Button>
+            </div>
+          );
+        },
 
-          if (
-            parseInt(row.bebas_tagihan) - parseInt(row.bebas_total_bayar) ===
-            0
-          ) {
-            return (
-              <Button variant="warning">
-                <FontAwesomeIcon icon={faPrint} />
-              </Button>
-            );
-          } else {
-            return (
-              <Button variant="warning" disabled>
-                <FontAwesomeIcon icon={faPrint} />
-              </Button>
-            );
-          }
-        },
-        align: "center",
-        headerStyle: {
-          width: "20%",
-          textAlign: "center",
-        },
+        // headerAlign : 'center'
       },
     ];
 
@@ -299,13 +331,26 @@ export default class PembayaranBebas extends Component {
 
             {/* Tampilan Mobile */}
             <div className="mobile">
-              <BootstrapTable
+            <BootstrapTable
                 keyField="id"
-                data={data}
-                columns={mobile}
+                data={
+                  this.state.details === false
+                    ? this.state.data
+                    : this.state.data_details
+                }
+                columns={this.state.details === false ? mobile : detail_mobile}
                 noDataIndication="Table is Empty"
                 bordered={false}
               />
+              {this.state.details === true ? (
+                <Button
+                  onClick={() => {
+                    this.setState({ details: false });
+                  }}
+                >
+                  Kembali
+                </Button>
+              ) : null}
             </div>
           </Card>
         </div>

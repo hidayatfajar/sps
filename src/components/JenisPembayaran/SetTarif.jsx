@@ -203,7 +203,7 @@ export default class SetTarif extends Component {
                     type="text"
                     value={this.state.nama_pos}
                     noValidate
-                    readOnly
+                    disabled
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">

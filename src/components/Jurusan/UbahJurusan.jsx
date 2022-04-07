@@ -123,7 +123,7 @@ export default class UbahJurusan extends Component {
                     placeholder="Id jurusan"
                     noValidate
                     onChange={this.handleChange}
-                    readOnly
+                    disabled
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">

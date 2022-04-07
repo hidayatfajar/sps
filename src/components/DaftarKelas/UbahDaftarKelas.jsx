@@ -124,7 +124,7 @@ export default class UbahDaftarKelas extends Component {
                     placeholder="ID Daftar Kelas"
                     noValidate
                     onChange={this.handleChange}
-                    readOnly
+                    disabled
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
