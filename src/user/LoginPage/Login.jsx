@@ -65,12 +65,12 @@ export default class Login extends Component {
                 kelas_nama: res.data.kelas_nama,
               })
             );
-            this.props.history.push("/user");
             Swal.fire({
               icon: "success",
               title: "Login Success",
               text: `${res.data.message}`,
             });
+            this.props.history.push("/user");
           }
         })
         .catch(() => {

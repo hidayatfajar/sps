@@ -41,6 +41,8 @@ import QRCode from "react-qr-code";
 import Qr from "../Assets/QrCode.svg";
 
 const SideBar = () => {
+  const user = JSON.parse(localStorage.getItem("dataSiswa"));
+
   const [sidebar, setSidebar] = useState("sidebar");
   const [main, setMain] = useState("main");
   const [text, setText] = useState("block");
@@ -96,7 +98,6 @@ const SideBar = () => {
     });
   };
 
-  const user = JSON.parse(localStorage.getItem("dataSiswa"));
   
 
   return (
@@ -118,7 +119,7 @@ const SideBar = () => {
 
                 fontWeight: '600'
               }}> 
-              {/* Hi, {user ? user.nama[0] : null} */}
+              Hi, {user ? user.nama[0] : null}
               </span>
             </Navbar.Text>
             <Navbar.Toggle aria-controls="offcanvasNavbar" className="burger"/>
@@ -129,7 +130,7 @@ const SideBar = () => {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id="offcanvasNavbarLabel">
-                  {/* Hi, {user ? user.nama[0]:null} */}
+                  Hi, {user ? user.nama[0]:null}
                   </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
@@ -144,59 +145,7 @@ const SideBar = () => {
           </Container>
         </Navbar>
       </div>
-      {/* <Navbar
-          collapseOnSelect
-          expand="lg"
-          bg="dark"
-          variant="dark"
-          className="navbar"
-          fixed="bottom"
-        >
-          <Container className="container">
-            <Link to="/user/transaksi">
-          <span className="menu">
-            <center className="logo">
-              <FontAwesomeIcon icon={faCreditCard} />
-            </center>
-            <p style={{ display: text }}>Transaksi</p>
-          </span>
-        </Link>
-            <Link to="/user/transaksi">
-          <span className="menu">
-            <center className="logo">
-              <FontAwesomeIcon icon={faCreditCard} />
-            </center>
-            <p style={{ display: text }}>Transaksi</p>
-          </span>
-        </Link>
-            <Link to="/user/transaksi">
-          <span className="menu">
-            <center className="logo">
-              <FontAwesomeIcon icon={faCreditCard} />
-            </center>
-            <p style={{ display: text }}>Transaksi</p>
-          </span>
-        </Link>
-            <Link to="/user/transaksi">
-          <span className="menu">
-            <center className="logo">
-              <FontAwesomeIcon icon={faCreditCard} />
-            </center>
-            <p style={{ display: text }}>Transaksi</p>
-          </span>
-        </Link>
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="me-auto"></Nav>
-              <Nav className="nav">
-                <Nav.Link href="#deets">
-                  <FontAwesomeIcon icon={faBell} />
-                </Nav.Link>
-                <Nav.Link href="#memes">{user.nama[0]}</Nav.Link>
-                <Nav.Link onClick={handleLogout}>Log out</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar> */}
+     
       {/* Sidebar */}
 
       <div className={sidebar}>
@@ -242,31 +191,19 @@ const SideBar = () => {
       
      
       <div className={main}>
-    {/* <div id="myModal" class="modal" > */}
-    <div className="qrcode" style={{display: qr }} onClick={changeQr}> 
-                  <div id="myModal" class="modal">
 
-                    {/* <!-- Modal content --> */}
-                    <div class="modal-content" >
-                      <QRCode
-                        className="qrcode"
-                        value={user.nis[0]}
-                        size={220}
-                        />
-                    </div>
-                  </div >
-            </div>
 
-        <Route exact path="/user/" component={Dashboard} />
-        <Route
+
+        <ProtectedRoute exact path="/user/" component={Dashboard} />
+        <ProtectedRoute
           exact
           path="/user/pembayaran/bebas/:id"
           component={PembayaranBebas}
         />
 
-        <Route exact path="/user/transaksi" component={Transaksi} />
-        <Route exact path="/user/profile" component={ProfileSiswa} />
-        <Route exact path="/user/profile/ubah/" component={UbahProfileSiswa} />
+        <ProtectedRoute exact path="/user/transaksi" component={Transaksi} />
+        <ProtectedRoute exact path="/user/profile" component={ProfileSiswa} />
+        <ProtectedRoute exact path="/user/profile/ubah/" component={UbahProfileSiswa} />
         <ProtectedRoute
           exact
           path="/user/invoice/bulanan/:id"
