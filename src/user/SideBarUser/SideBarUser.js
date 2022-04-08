@@ -113,39 +113,11 @@ const SideBar = () => {
               <Image onClick={changeSidebar} className="logo" src={logo} />{" "}
               SPS
             </Navbar.Brand>
-            <Navbar.Text className="text justify-content-end">
-              <span style={{
-                fontSize: '16px',
-
-                fontWeight: '600'
-              }}> 
-              Hi, {user ? user.nama[0] : null}
-              </span>
-            </Navbar.Text>
-            <Navbar.Toggle aria-controls="offcanvasNavbar" className="burger"/>
-            <Navbar.Offcanvas
-              id="offcanvasNavbar"
-              aria-labelledby="offcanvasNavbarLabel"
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id="offcanvasNavbarLabel">
-                  Hi, {user ? user.nama[0]:null}
-                  </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link> <Link to='/user/' style={{textDecoration: 'none'}} >Home</Link> </Nav.Link>
-                  <Nav.Link> <Link to='/user/transaksi/'style={{textDecoration: 'none'}} >Transaksi</Link> </Nav.Link>
-                  <Nav.Link> <Link to='/user/profile/'style={{textDecoration: 'none'}} >Profile</Link> </Nav.Link>
-                  <Nav.Link onClick={handleLogout}>Log out</Nav.Link>
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
           </Container>
         </Navbar>
       </div>
-     
+
+      
       {/* Sidebar */}
 
       <div className={sidebar}>
@@ -191,7 +163,20 @@ const SideBar = () => {
       
      
       <div className={main}>
+{/* <div id="myModal" class="modal" > */}
+<div className="qrcode" style={{display: qr }} onClick={changeQr}> 
+                  <div id="myModal" class="modal">
 
+                    {/* <!-- Modal content --> */}
+                    <div class="modal-content" >
+                      <QRCode
+                        className="qrcode"
+                        value={user.nis[0]}
+                        size={220}
+                        />
+                    </div>
+                  </div >
+            </div>
 
 
         <ProtectedRoute exact path="/user/" component={Dashboard} />

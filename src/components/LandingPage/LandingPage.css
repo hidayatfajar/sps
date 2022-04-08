@@ -514,7 +514,7 @@
 
     .page3 .page3-imgslide .hello {
         margin-top: 60px;
-        margin-bottom: -60px;
+        margin-bottom: -160px;
     }
 
     .page3 .page3-imgslide .hello .cover-img .img3 {
@@ -598,5 +598,12 @@
     .footer {
         width: 100%;
         height: auto;
+    }
+}
+
+
+@media (max-width:320px){
+    .page2 .page2-content {
+        margin-top: 140px;
     }
 }
