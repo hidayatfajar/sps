@@ -41,6 +41,8 @@ import QRCode from "react-qr-code";
 import Qr from "../Assets/QrCode.svg";
 
 const SideBar = () => {
+  const user = JSON.parse(localStorage.getItem("dataSiswa"));
+
   const [sidebar, setSidebar] = useState("sidebar");
   const [main, setMain] = useState("main");
   const [text, setText] = useState("block");
@@ -96,7 +98,6 @@ const SideBar = () => {
     });
   };
 
-  const user = JSON.parse(localStorage.getItem("dataSiswa"));
   
 
   return (
@@ -162,8 +163,8 @@ const SideBar = () => {
       
      
       <div className={main}>
-    {/* <div id="myModal" class="modal" > */}
-    <div className="qrcode" style={{display: qr }} onClick={changeQr}> 
+{/* <div id="myModal" class="modal" > */}
+<div className="qrcode" style={{display: qr }} onClick={changeQr}> 
                   <div id="myModal" class="modal">
 
                     {/* <!-- Modal content --> */}
@@ -177,16 +178,17 @@ const SideBar = () => {
                   </div >
             </div>
 
-        <Route exact path="/user/" component={Dashboard} />
-        <Route
+
+        <ProtectedRoute exact path="/user/" component={Dashboard} />
+        <ProtectedRoute
           exact
           path="/user/pembayaran/bebas/:id"
           component={PembayaranBebas}
         />
 
-        <Route exact path="/user/transaksi" component={Transaksi} />
-        <Route exact path="/user/profile" component={ProfileSiswa} />
-        <Route exact path="/user/profile/ubah/" component={UbahProfileSiswa} />
+        <ProtectedRoute exact path="/user/transaksi" component={Transaksi} />
+        <ProtectedRoute exact path="/user/profile" component={ProfileSiswa} />
+        <ProtectedRoute exact path="/user/profile/ubah/" component={UbahProfileSiswa} />
         <ProtectedRoute
           exact
           path="/user/invoice/bulanan/:id"

@@ -154,7 +154,7 @@ export default class PembayaranBebas extends Component {
         dataField: "d_bebas_bayar",
         text: "Nominal",
       },
-      // {  
+      // { 
       //   dataField: "d_bebas_tanggal",
       //   text: "Tanggal",
       // },

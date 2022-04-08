@@ -73,16 +73,15 @@ export default class ProfileSiswa extends Component {
             <Card.Title>Profile</Card.Title>
             <hr />
             <Form>
-              <Row >
+              <Row>
                 <Col md={2}>
-                  <div style={{
-                    margin: "20px 0",
-                  }}>
-
+                  <div
+                    style={{
+                      margin: "20px 0",
+                    }}
+                  >
                     <img
-                      src={
-                        "https://api-sps.my.id/" + this.state.gambar
-                      }
+                      src={"https://api-sps.my.id/" + this.state.gambar}
                       width={164}
                       height={164}
                       style={{
@@ -93,15 +92,20 @@ export default class ProfileSiswa extends Component {
                       }}
                     />
                   </div>
-                  <Link to="/user/profile/ubah"
-                  style={{
-                    textDecoration: "none",
-                  }}>
-                    <Button variant="outline-primary" type="submit"
+                  <Link
+                    to="/user/profile/ubah"
+                    style={{
+                      textDecoration: "none",
+                    }}
+                  >
+                    <Button
+                      variant="outline-primary"
+                      type="submit"
                       style={{
                         display: "flex",
                         margin: "0 auto",
-                      }}>
+                      }}
+                    >
                       Ubah Profile
                     </Button>
                   </Link>
@@ -131,21 +135,6 @@ export default class ProfileSiswa extends Component {
                       type="text"
                       value={this.state.siswa_nama}
                       placeholder="Nama Siswa"
-                      noValidate
-                      onChange={this.handleChange}
-                      disabled
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label>
-                      Password<span className="text-danger">*</span>
-                    </Form.Label>
-                    <Form.Control
-                      name="password"
-                      id="password"
-                      type="password"
-                      value={this.state.password}
-                      placeholder="Masukkan Password"
                       noValidate
                       onChange={this.handleChange}
                       disabled
@@ -182,10 +171,23 @@ export default class ProfileSiswa extends Component {
                       disabled
                     ></Form.Control>
                   </Form.Group>
-
+                  <Form.Group className="mb-3">
+                    <Form.Label>
+                      Password<span className="text-danger">*</span>
+                    </Form.Label>
+                    <Form.Control
+                      name="password"
+                      id="password"
+                      type="password"
+                      value={this.state.password}
+                      placeholder="Masukkan Password"
+                      noValidate
+                      onChange={this.handleChange}
+                      disabled
+                    />
+                  </Form.Group>
                 </Col>
               </Row>
-
             </Form>
           </Card.Body>
         </Card>

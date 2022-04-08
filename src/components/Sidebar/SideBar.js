@@ -89,11 +89,10 @@ import CetakLaporanKelas from '../Laporan/CetakLaporanKelas'
 // import LaporanKelas from "../Laporan/LaporanKelas";
 import DetailSiswa from './../DetailSiswa/DetailSiswa';
 import InvoiceBebas from './../Pembayaran/InvoiceBebas';
+import Kelulusan from './../Kelulusan/Kelulusan';
 
 const SideBar = () => {
   const admin = JSON.parse(localStorage.getItem("dataAdmin"));
-  // 
-  // const user = useState(admin.nama[0]);
 
   const [sidebar, setSidebar] = useState("sidebar");
   const [main, setMain] = useState("main");
@@ -176,13 +175,8 @@ const SideBar = () => {
     history.push("/");
       }
     });
-  };
-  let nama = ""
-  // if (admin) {
-  //   nama = admin.nama[0]
-  // }
-  // console.log(admin.nama[0])
-
+  }; 
+  
   return (
     <div>
       <div className="admin">
@@ -230,7 +224,7 @@ const SideBar = () => {
                         }}
                       />
                       &ensp;
-                      {/* {admin.nama[0]} */}
+                {admin ? admin.nama[0] : null}
                     </span>
                   }
                   menuVariant="dark"
@@ -354,6 +348,9 @@ const SideBar = () => {
                   </Link>
                   <Link to="/admin/kenaikan-kelas">
                     <li>Kenaikan Kelas</li>{" "}
+                  </Link>
+                  <Link to="/admin/kelulusan">
+                    <li>Kelulusan</li>{" "}
                   </Link>
                 </ul>
               </div>
@@ -593,6 +590,7 @@ const SideBar = () => {
             path="/admin/laporan/angkatan/bulanan"
             component={LaporanKelas}
           />
+          <ProtectedRoute exact path="/admin/kelulusan" component={Kelulusan} />
           <ProtectedRoute exact path="/admin/laporan/cetak" component={CetakLaporanKelas} />
           <ProtectedRoute
             exact
