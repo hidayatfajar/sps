@@ -105,8 +105,13 @@ export default class PembayaranBebas extends Component {
         text: "Deskripsi",
       },
       {
-        dataField: "d_bebas_bayar",
-        text: "Nominal",
+        formatter: (cell, row) => {
+          return(
+            <div>
+             Rp. {row.d_bebas_bayar.toLocaleString("id-ID",)}
+            </div>
+          )
+        }
       },
       {
         dataField: "d_bebas_tanggal",
@@ -151,10 +156,16 @@ export default class PembayaranBebas extends Component {
         text: "Deskripsi",
       },
       {
-        dataField: "d_bebas_bayar",
-        text: "Nominal",
+        formatter: (cell, row) => {
+          return (
+            <div>
+              Rp. {row.d_bebas_bayar.toLocaleString("id-ID",)}
+            </div>
+          )
+        },
+        text : "Nominal"
       },
-      // { 
+      // {
       //   dataField: "d_bebas_tanggal",
       //   text: "Tanggal",
       // },

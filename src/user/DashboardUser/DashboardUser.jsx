@@ -35,7 +35,6 @@ export default class DashboardUser extends Component {
     super(props);
     let bayar = 70;
     let tagihan = 200;
-    // const user = JSON.parse(localStorage.getItem("dataSiswa"));
     this.state = {
       count1: (bayar / tagihan) * 100,
       modal: false,
@@ -68,6 +67,8 @@ export default class DashboardUser extends Component {
 
 
   render() {
+    const user = JSON.parse(localStorage.getItem("dataSiswa"));
+    console.log(user)
     const onChange = (date) => {
       
     };
@@ -123,8 +124,8 @@ export default class DashboardUser extends Component {
                         </Link>
                       </div>
                       {/* <br /> */}
-                      <h6 style={{ textAlign: "left" }}>{this.state.nis}</h6>
-                      <h4>{this.state.nama}</h4>
+                      <h6 style={{ textAlign: "left" }}>{user.nis[0] ? user.nis[0] : null}</h6>
+                      <h4>{user.nama[0] ? user.nama[0] : null}</h4>
                       <br />
                       <br />
                       <ProgressBar
@@ -168,8 +169,8 @@ export default class DashboardUser extends Component {
                           </h6>
                         </Link>
                       </div>
-                      <h6 style={{ textAlign: "left" }}>{this.state.nis}</h6>
-                      <h4>{this.state.nama}</h4>
+                      <h6 style={{ textAlign: "left" }}>{user.nis[0] ? user.nis[0] : null}</h6>
+                      <h4>{user.nama[0] ? user.nama[0] : null}</h4>
                       <br />
                       <br />
                       <ProgressBar

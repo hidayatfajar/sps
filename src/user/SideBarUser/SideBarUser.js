@@ -24,7 +24,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import logo from "../Assets/LandingPageImg/Logo.png";
+import logo from "../Assets/logotextwhite.svg";
 
 import "./SideBarUser.css";
 
@@ -105,19 +105,23 @@ const SideBar = () => {
       <div className="user">
         {/* Navbar */}
         <Navbar bg="light" expand={false} className="navbar" fixed="top">
-          <Container >
+          < >
             <Navbar.Brand style={{
               color: 'white',
               border: '5px',
             }}>
-              <Image onClick={changeSidebar} className="logo" src={logo} />{" "}
-              SPS
+              <Image onClick={changeSidebar} className="logo" src={logo}
+              position="absolute"
+              width="637px"
+              height="40px"
+              alt="logo"
+              style={{maxWidth:'500px'}} />
             </Navbar.Brand>
             <Navbar.Text className="text justify-content-end">
               <span style={{
                 fontSize: '16px',
-
-                fontWeight: '600'
+                fontWeight: '600',
+                marginRight:'30px'
               }}> 
               Hi, {user ? user.nama[0] : null}
               </span>
@@ -142,7 +146,7 @@ const SideBar = () => {
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
-          </Container>
+          </>
         </Navbar>
       </div>
      

@@ -52,7 +52,7 @@ export default class ProfileSiswa extends Component {
 
     return (
       <div>
-        <Card>
+        {/* <Card>
           <Card.Body>
             <Breadcrumb
               style={{
@@ -66,12 +66,14 @@ export default class ProfileSiswa extends Component {
               <Breadcrumb.Item active>Profile</Breadcrumb.Item>
             </Breadcrumb>
           </Card.Body>
-        </Card>
+        </Card> */}
         <br />
+            {/* <Card.Title> */}
+            <h3 style={{ paddingBottom: "10px" }}>Profile</h3>
+
+              {/* </Card.Title> */}
         <Card style={{ color: "black" }}>
           <Card.Body>
-            <Card.Title>Profile</Card.Title>
-            <hr />
             <Form>
               <Row>
                 <Col md={2}>

@@ -173,7 +173,7 @@ export default class InvoiceBebas extends Component {
                   <p>{this.state.d_bebas_deskripsi}</p>
                 </div>
                 <div className="kelas-isi">
-                  <p>{this.state.d_bebas_bayar}</p>
+                  <p>Rp. {this.state.d_bebas_bayar}</p>
                 </div>
               </div>
               <hr />
@@ -186,7 +186,7 @@ export default class InvoiceBebas extends Component {
                 }}
               >
                 <h6 style={{ fontWeight: "700" }}>Total</h6>
-                <p style={{ fontWeight: "700" }}>{this.state.d_bebas_bayar}</p>
+                <p style={{ fontWeight: "700" }}>Rp. {this.state.d_bebas_bayar}</p>
               </div>
               <hr />
               <div
