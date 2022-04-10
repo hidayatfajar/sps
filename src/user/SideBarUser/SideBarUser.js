@@ -149,7 +149,8 @@ const SideBar = () => {
           </>
         </Navbar>
       </div>
-     
+
+      
       {/* Sidebar */}
 
       <div className={sidebar}>
@@ -195,7 +196,20 @@ const SideBar = () => {
       
      
       <div className={main}>
+{/* <div id="myModal" class="modal" > */}
+<div className="qrcode" style={{display: qr }} onClick={changeQr}> 
+                  <div id="myModal" class="modal">
 
+                    {/* <!-- Modal content --> */}
+                    <div class="modal-content" >
+                      <QRCode
+                        className="qrcode"
+                        value={user.nis[0]}
+                        size={220}
+                        />
+                    </div>
+                  </div >
+            </div>
 
 
         <ProtectedRoute exact path="/user/" component={Dashboard} />
