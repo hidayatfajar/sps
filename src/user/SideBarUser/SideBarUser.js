@@ -125,26 +125,7 @@ const SideBar = () => {
               Hi, {user ? user.nama[0] : null}
               </span>
             </Navbar.Text>
-            <Navbar.Toggle aria-controls="offcanvasNavbar" className="burger"/>
-            <Navbar.Offcanvas
-              id="offcanvasNavbar"
-              aria-labelledby="offcanvasNavbarLabel"
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id="offcanvasNavbarLabel">
-                  Hi, {user ? user.nama[0]:null}
-                  </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link> <Link to='/user/' style={{textDecoration: 'none'}} >Home</Link> </Nav.Link>
-                  <Nav.Link> <Link to='/user/transaksi/'style={{textDecoration: 'none'}} >Transaksi</Link> </Nav.Link>
-                  <Nav.Link> <Link to='/user/profile/'style={{textDecoration: 'none'}} >Profile</Link> </Nav.Link>
-                  <Nav.Link onClick={handleLogout}>Log out</Nav.Link>
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
+           
           </>
         </Navbar>
       </div>

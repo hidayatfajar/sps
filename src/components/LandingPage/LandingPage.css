@@ -13,7 +13,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #888; 
-    border-radius: 20px;
+    border-radius: 50px;
 }
 
 /* Handle on hover */
@@ -339,7 +339,7 @@
 }
 
 .page5 .contentBox .content .testimoni h6 {
-    max-width: 330px;
+    max-width: 540px;
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.5px;

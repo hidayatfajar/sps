@@ -42,6 +42,7 @@ import icon8 from "../Assets/LandingPageImg/qr-icon.svg";
 import icon9 from "../Assets/LandingPageImg/keamanan.svg";
 
 import guru1 from "../Assets/LandingPageImg/guru1.svg";
+import guru2 from "../Assets/LandingPageImg/guru2.svg";
 
 import "./LandingPage.css";
 
@@ -356,19 +357,22 @@ export default class LandingPage extends Component {
                     <div className="content">
                       <Row>
                         <Col md={2}>
-                          <Image className="guru-img" src={guru1} />
+                          <Image className="guru-img" src={guru2} />
                         </Col>
-                        <Col md={5}>
+                        <Col md={3}>
                           <div className="profile-feedbacks">
-                            <h6>Otong Nasihin S.Pd</h6>
-                            <p>Staf Tata Usaha</p>
+                            <h6>Mety Indriati, SS</h6>
+                            <p>Staff Pembantu Pimpinan</p>
                           </div>
                         </Col>
-                        <Col md={5}>
+                        <Col md={7}>
                           <div className="testimoni">
                             <h6>
-                              "Web ini sangat membantu dan memudahkan pekerjaan
-                              kami"
+                              "Web ini membantu semua jenis pekerjaan manusia
+                              sehingga mampu menyelesaikan pekerjaan dengan
+                              cepat karena dimasa depan teknologi akan semakin
+                              canggih dan semua pekerjaan dikerjakan dengan
+                              system komputerisasi."
                             </h6>
                           </div>
                         </Col>
