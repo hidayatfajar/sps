@@ -13,8 +13,8 @@ import InformasiSIswa from "./InformasiSIswa";
 import axios from "axios";
 import SimpleReactValidator from "simple-react-validator";
 import Swal from "sweetalert2";
-import QRScan from 'qrscan'
-
+import QRScan from "qrscan";
+import { QrReader } from "react-qr-reader";
 
 export default class Pembayaran extends Component {
   constructor(props) {
@@ -27,13 +27,12 @@ export default class Pembayaran extends Component {
       periodes: [],
       nis: "",
       periode: "",
-      value: '',
+      value: "",
       watching: false,
       data: [],
-      databulanan: []
+      databulanan: [],
+      hasil: "0",
     };
-
-    this.onFind = this.onFind.bind(this)
   }
 
   handleChange = (e) => {
@@ -49,9 +48,7 @@ export default class Pembayaran extends Component {
       axios
         .get(`https://api-sps.my.id/siswa_nis/${this.state.nis}`)
         .then((res) => {
-          
           if (res.data[0] === undefined) {
-            
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -64,7 +61,6 @@ export default class Pembayaran extends Component {
           }
         })
         .catch((err) => {
-          
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -83,18 +79,15 @@ export default class Pembayaran extends Component {
         periodes: res.data,
       });
     });
-    if(this.props.location.state){
-      
+    if (this.props.location.state) {
       this.setState({
         nis: this.props.location.state.nis,
-        periode: this.props.location.state.periode
-      })
+        periode: this.props.location.state.periode,
+      });
       axios
         .get(`https://api-sps.my.id/siswa_nis/${this.props.location.state.nis}`)
         .then((res) => {
-          
           if (res.data[0] === undefined) {
-            
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -107,7 +100,6 @@ export default class Pembayaran extends Component {
           }
         })
         .catch((err) => {
-          
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -117,13 +109,9 @@ export default class Pembayaran extends Component {
     }
   }
 
-  onFind(nis) {
-    this.setState({ nis, watching: false })
-  }
-
-
   render() {
-    
+    console.log(this.state.nis);
+    console.log(this.state.watching);
     return (
       <div>
         <Card>
@@ -219,11 +207,18 @@ export default class Pembayaran extends Component {
                 <Col>
                   <Form.Group as={Row} className="mb-3">
                     <Col className="d-flex">
-                      <Button type="submit" variant="outline-primary">Cari Siswa</Button>
+                      <Button type="submit" variant="outline-primary">
+                        Cari Siswa
+                      </Button>
                       &ensp;
-                      <Button type="scan" variant="outline-primary" onClick={() => this.setState({ watching: true })}>Scan</Button>
+                      <Button
+                        type="scan"
+                        variant="outline-primary"
+                        onClick={() => this.setState({ watching: true })}
+                      >
+                        Scan
+                      </Button>
                     </Col>
-
                   </Form.Group>
                 </Col>
               </Row>
@@ -231,21 +226,31 @@ export default class Pembayaran extends Component {
           </Card.Body>
         </Card>
         <br />
-        {this.state.watching
-          ? (
-            <Card body style={{ width: 'auto' }}>
-              <center>
-                <QRScan
-                  onFind={this.onFind}
-                />
-              </center>
-            </Card>
-          )
-          : (
-            <span>
-            </span>
-          )
-        }
+        {this.state.watching ? (
+          <Card body style={{ width: "auto" }}>
+            <center>
+              <QrReader
+                onResult={(result, error) => {
+                  if (result) {
+                    console.log(result);
+                    this.setState({
+                      nis: result,
+                      watching: false,
+                    });
+                    this.handleSubmit();
+                  }
+
+                  if (error) {
+                    console.log(error);
+                  }
+                }}
+                style={{ width: "100%" }}
+              />
+              <p>{this.state.hasil}</p>
+              {/* <QRScan onFind={this.onFind} style={{width : "40px", height : "40px"}}/> */}
+            </center>
+          </Card>
+        ) : null}
         <br />
         {this.state.visible ? (
           <InformasiSIswa periode={this.state.periode} nis={this.state.nis} />

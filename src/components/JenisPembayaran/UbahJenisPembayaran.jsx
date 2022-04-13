@@ -52,7 +52,6 @@ export default class SetTarif extends Component {
           data
         )
         .then((res) => {
-          
           if (res.data.status === undefined) {
             Swal.fire({
               icon: "success",
@@ -131,7 +130,7 @@ export default class SetTarif extends Component {
                   Jenis Pembayaran<span className="text-danger">*</span>
                 </Form.Label>
                 <FormSelect name="tipe" onChange={this.handleChange}>
-                <option value="">=== Pilih Jenis Pembayaran ===</option>
+                  <option value="">=== Pilih Jenis Pembayaran ===</option>
                   <option value="BULANAN">BULANAN </option>
                   <option value="BEBAS">BEBAS </option>
                 </FormSelect>

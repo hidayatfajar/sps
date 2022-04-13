@@ -16,6 +16,8 @@ import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 import ReactToPrint from "react-to-print";
 import CetakLaporanKelas from "./CetakLaporanKelas";
+import CetakLaporanBebas from "./CetakLaporanBebas";
+import Laporan from "./Laporan";
 import Swal from "sweetalert2";
 
 export default class LaporanKelas extends Component {
@@ -56,7 +58,12 @@ export default class LaporanKelas extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.validator.allValid() && this.state.kelas !== "" && this.state.jurusan !== "" && this.state.d_kelas !== "") {
+    if (
+      this.validator.allValid() &&
+      this.state.kelas !== "" &&
+      this.state.jurusan !== "" &&
+      this.state.d_kelas !== ""
+    ) {
       const data = {
         kelas_id: this.state.kelas,
         jurusan_id: this.state.jurusan,
@@ -69,7 +76,7 @@ export default class LaporanKelas extends Component {
             this.setState({
               data_bebas: res.data.data,
               total_bebas: res.data.sisa_tagihan_kelas,
-            })
+            });
           } else {
             this.setState({
               data_bebas: "",
@@ -84,7 +91,6 @@ export default class LaporanKelas extends Component {
       axios
         .post("https://api-sps.my.id/laporan/kelas/bulanan", data)
         .then((res) => {
-          
           if (res.data.error !== true) {
             this.setState({
               data_bulanan: res.data.data,
@@ -120,7 +126,13 @@ export default class LaporanKelas extends Component {
       r[a.periode] = [...(r[a.periode] || []), a];
       return r;
     }, {});
-    
+
+    const bebas = this.state.data_bebas.reduce((r, a) => {
+      r[a.periode] = [...(r[a.periode] || []), a];
+      return r;
+    }, {});
+
+    console.log(bebas);
 
     const fileType =
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
@@ -135,46 +147,58 @@ export default class LaporanKelas extends Component {
         acc[curr.periode].push(curr);
         return acc;
       }, {});
-      
+
       // add title on first row merged cells
       // then push down rows with data
       const rows = [];
       // check if apiData is from bebas or bulanan
       // if bebas, rows = [["Nama Siswa", "Kelas", "Periode", "Sisa Tagihan"]]
       // if bulanan, rows = [["Nama Siswa", "Kelas", "Periode", "Sisa Bulan", "Sisa Tagihan"]]
-      console.log(apiData[0].sisa_bulan)
-      if(apiData[0].sisa_bulan === undefined){
+      console.log(apiData[0].sisa_bulan);
+      if (apiData[0].sisa_bulan === undefined) {
         rows.push(["Nama Siswa", "Kelas", "Periode", "Sisa Tagihan"]);
         Object.keys(groupedData).forEach((key) => {
           groupedData[key].forEach((item) => {
             rows.push([
               item.siswa_nama,
-              item.kelas_nama + " " + item.jurusan_nama + " " + item.d_kelas_nama,
+              item.kelas_nama +
+                " " +
+                item.jurusan_nama +
+                " " +
+                item.d_kelas_nama,
               item.periode,
               item.sisa_tagihan,
             ]);
           });
         });
       } else {
-        rows.push(["Nama Siswa", "Kelas", "Periode", "Sisa Bulan", "Sisa Tagihan"]);
+        rows.push([
+          "Nama Siswa",
+          "Kelas",
+          "Periode",
+          "Sisa Bulan",
+          "Sisa Tagihan",
+        ]);
         Object.keys(groupedData).forEach((key) => {
           groupedData[key].forEach((item) => {
             rows.push([
               item.siswa_nama,
-              item.kelas_nama + " " + item.jurusan_nama + " " + item.d_kelas_nama,
+              item.kelas_nama +
+                " " +
+                item.jurusan_nama +
+                " " +
+                item.d_kelas_nama,
               item.periode,
               item.sisa_bulan,
               item.sisa_tagihan,
             ]);
           });
         });
-      }       
+      }
       // convert array of arrays into workbook
       const ws = XLSX.utils.aoa_to_sheet(rows);
       const wb = XLSX.utils.book_new();
-      
-      
-      
+
       XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
       // generate a file name
       const nameFile = fileName + fileExtension;
@@ -490,7 +514,7 @@ export default class LaporanKelas extends Component {
                           content={() => this.componentRef}
                         />
                         <div style={{ display: "none" }}>
-                          <CetakLaporanKelas
+                          <Laporan
                             data={bulanan}
                             ref={(el) => (this.componentRef = el)}
                           />
@@ -520,16 +544,33 @@ export default class LaporanKelas extends Component {
                   bordered={false}
                 />
                 {this.state.total_bebas ? (
-                  <Button
-                    onClick={(e) =>
-                      exportToCSV(
-                        data,
-                        `Laporan-Bebas ${this.state.kelas}${this.state.jurusan}${this.state.d_kelas}`
-                      )
-                    }
-                  >
-                    Ekspor Excel
-                  </Button>
+                  <div>
+                    <Button
+                      onClick={(e) =>
+                        exportToCSV(
+                          data,
+                          `Laporan-Bebas ${this.state.kelas}${this.state.jurusan}${this.state.d_kelas}`
+                        )
+                      }
+                    >
+                      Ekspor Excel
+                    </Button>
+                    &ensp;
+                    <div className="btn-print-download ">
+                      <ReactToPrint
+                        trigger={() => (
+                          <Button variant="danger">Download PDF</Button>
+                        )}
+                        content={() => this.componentRef}
+                      />
+                      <div style={{ display: "none" }}>
+                        <CetakLaporanBebas
+                          data={bebas}
+                          ref={(el) => (this.componentRef = el)}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 ) : null}
               </Tab>
             </Tabs>

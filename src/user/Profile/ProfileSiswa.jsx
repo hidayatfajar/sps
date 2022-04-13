@@ -68,10 +68,10 @@ export default class ProfileSiswa extends Component {
           </Card.Body>
         </Card> */}
         <br />
-            {/* <Card.Title> */}
-            <h3 style={{ paddingBottom: "10px" }}>Profile</h3>
+        {/* <Card.Title> */}
+        <h3 style={{ paddingBottom: "10px" }}>Profile</h3>
 
-              {/* </Card.Title> */}
+        {/* </Card.Title> */}
         <Card style={{ color: "black" }}>
           <Card.Body>
             <Form>

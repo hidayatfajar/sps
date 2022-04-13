@@ -59,7 +59,7 @@ export default class UbahJurusan extends Component {
       axios
         .put(`https://api-sps.my.id/ubah/jurusan/${jurusan_id}`, data)
         .then((res) => {
-          if (res.data.error === true ) {
+          if (res.data.error === true) {
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -70,9 +70,10 @@ export default class UbahJurusan extends Component {
             });
           } else {
             Swal.fire({
-            icon: "success",
-            title: "Good Job!",
-            text: `${res.data.message}`,});
+              icon: "success",
+              title: "Good Job!",
+              text: `${res.data.message}`,
+            });
           }
           this.props.history.push("/admin/jurusan");
         })
@@ -156,14 +157,15 @@ export default class UbahJurusan extends Component {
                     )}
                   </div>
                 </Form.Group>
-                    <Button variant="outline-primary" type="submit">
-                      Ubah
-                    </Button>&ensp;
-                    <Link to="/admin/jurusan">
-                      <Button variant="outline-danger" type="submit">
-                        Batal
-                      </Button>
-                    </Link>
+                <Button variant="outline-primary" type="submit">
+                  Ubah
+                </Button>
+                &ensp;
+                <Link to="/admin/jurusan">
+                  <Button variant="outline-danger" type="submit">
+                    Batal
+                  </Button>
+                </Link>
               </Form>
             </Form.Group>
           </Card.Body>

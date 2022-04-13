@@ -23,7 +23,6 @@ export default class InvoicePrint extends Component {
     axios
       .get(`https://api-sps.my.id/invoice/bulanan/${this.state.id}`)
       .then((res) => {
-        
         if (res.data.error === true) {
           this.setState({
             tanggal: "",

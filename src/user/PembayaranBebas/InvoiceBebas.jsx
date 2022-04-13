@@ -196,7 +196,9 @@ export default class InvoiceBebas extends Component {
                 }}
               >
                 <h6 style={{ fontWeight: "700" }}>Total</h6>
-                <p style={{ fontWeight: "700" }}>Rp. {this.state.d_bebas_bayar}</p>
+                <p style={{ fontWeight: "700" }}>
+                  Rp. {this.state.d_bebas_bayar}
+                </p>
               </div>
               <hr />
               <div

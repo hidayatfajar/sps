@@ -99,7 +99,6 @@ const SideBar = () => {
   };
 
   
-
   return (
     <div>
       <div className="user">
@@ -203,8 +202,8 @@ const SideBar = () => {
                     {/* <!-- Modal content --> */}
                     <div class="modal-content" >
                       <QRCode
-                        className="qrcode"
-                        value={user.nis[0]}
+                        // check if user.nis[0] and user.nama is not null then value is user.nis[0] and user.nama
+                        value={user.nis[0]? user.nis[0] : null}
                         size={220}
                         />
                     </div>

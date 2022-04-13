@@ -60,7 +60,7 @@ export default class PembayaranBulanan extends Component {
 
   render() {
     const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
-    console.log(id)
+    console.log(id);
     const desktop = [
       {
         dataField: "month_id",

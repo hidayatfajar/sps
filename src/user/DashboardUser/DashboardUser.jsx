@@ -24,7 +24,6 @@ import { Link } from "react-router-dom";
 import DatePicker from "sassy-datepicker";
 import QRCode from "react-qr-code";
 
-
 import Bulanan from "../PembayaranBulanan/PembayaranBulanan";
 import Bebas from "../PembayaranBebas/PembayaranBebas";
 
@@ -38,52 +37,53 @@ export default class DashboardUser extends Component {
     this.state = {
       count1: (bayar / tagihan) * 100,
       modal: false,
-      id : 100,
-      nis : 192010447, 
+      id: 100,
+      nis: 192010447,
       nama: "Fajar",
-      kelas : "XII RPL 3",
-      lunas : "",
-      total_bulan:""
+      kelas: "XII RPL 3",
+      lunas: "",
+      total_bulan: "",
     };
   }
 
   onModal = (e) => {
     this.setState({
-      modal: !this.state.modal
-    })
-  }
+      modal: !this.state.modal,
+    });
+  };
 
   componentDidMount() {
-    console.log(this.state.nis)
-    axios.get(`https://api-sps.my.id/tagihan/lunas/${this.state.id}`).then((res) => {
-      this.setState({
-        lunas: res.data.total_lunas
-      })
-    })
-    axios.get(`https://api-sps.my.id/tagihan/bebas/${this.state.id}`).then((res) => {
-      console.log(res)
-  })
+    console.log(this.state.nis);
+    axios
+      .get(`https://api-sps.my.id/tagihan/lunas/${this.state.id}`)
+      .then((res) => {
+        this.setState({
+          lunas: res.data.total_lunas,
+        });
+      });
+    axios
+      .get(`https://api-sps.my.id/tagihan/bebas/${this.state.id}`)
+      .then((res) => {
+        console.log(res);
+      });
   }
-
 
   render() {
     const user = JSON.parse(localStorage.getItem("dataSiswa"));
-    console.log(user)
-    const onChange = (date) => {
-      
-    };
-    if(this.state.kelas === 1){
+    console.log(user);
+    const onChange = (date) => {};
+    if (this.state.kelas === 1) {
       this.setState({
-        total_bulan : 12
-      })
-    } else if (this.state.kelas === 2){
+        total_bulan: 12,
+      });
+    } else if (this.state.kelas === 2) {
       this.setState({
-        total_bulan : 24
-      })
-    } else if (this.state.kelas === 3){
+        total_bulan: 24,
+      });
+    } else if (this.state.kelas === 3) {
       this.setState({
-        total_bulan : 36
-      })
+        total_bulan: 36,
+      });
     }
     return (
       <div>
@@ -124,7 +124,9 @@ export default class DashboardUser extends Component {
                         </Link>
                       </div>
                       {/* <br /> */}
-                      <h6 style={{ textAlign: "left" }}>{user.nis[0] ? user.nis[0] : null}</h6>
+                      <h6 style={{ textAlign: "left" }}>
+                        {user.nis[0] ? user.nis[0] : null}
+                      </h6>
                       <h4>{user.nama[0] ? user.nama[0] : null}</h4>
                       <br />
                       <br />
@@ -169,7 +171,9 @@ export default class DashboardUser extends Component {
                           </h6>
                         </Link>
                       </div>
-                      <h6 style={{ textAlign: "left" }}>{user.nis[0] ? user.nis[0] : null}</h6>
+                      <h6 style={{ textAlign: "left" }}>
+                        {user.nis[0] ? user.nis[0] : null}
+                      </h6>
                       <h4>{user.nama[0] ? user.nama[0] : null}</h4>
                       <br />
                       <br />
@@ -197,7 +201,6 @@ export default class DashboardUser extends Component {
             </Row>
           </div>
           {/* --------------------- */}
-
 
           {/* Tampilan Mobile */}
           <div className="transaksi-dashboard">
@@ -362,7 +365,7 @@ export default class DashboardUser extends Component {
             </Tab.Container>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

@@ -172,6 +172,7 @@ const SideBar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
     localStorage.removeItem("dataAdmin");
+    localStorage.removeItem("token");
     history.push("/");
       }
     });
@@ -224,7 +225,7 @@ const SideBar = () => {
                         }}
                       />
                       &ensp;
-                {admin ? admin.nama[0] : null}
+                {admin ? admin.nama : null}
                     </span>
                   }
                   menuVariant="dark"
@@ -269,7 +270,7 @@ const SideBar = () => {
                     }}
                   />
                   <div className="text-admin" style={{ display: text }}>
-                {admin ? admin.nama[0] : null}
+                {admin ? admin.nama : null}
 
                     <h6>Administrator</h6>
                     <p

@@ -130,7 +130,7 @@ export default class Data extends Component {
             <Card.Title>Jenis Pembayaran</Card.Title>
             <hr />
             <Link to={"/admin/jenis-pembayaran/tambah"}>
-              <Button className="mr-2" variant="outline-primary" block="">
+              <Button className="mr-2" variant="outline-primary" block>
                 Tambah
               </Button>
             </Link>{" "}

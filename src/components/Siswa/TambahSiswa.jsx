@@ -101,8 +101,6 @@ export default class TambahSiswa extends Component {
       axios
         .post("https://api-sps.my.id/tambah/siswa", data)
         .then((res) => {
-          
-
           if (res.data.error === true) {
             Swal.fire({
               icon: "error",
@@ -150,7 +148,7 @@ export default class TambahSiswa extends Component {
             </Breadcrumb>
           </Card.Body>
         </Card>
-        <br/>
+        <br />
         <Card style={{ color: "black" }}>
           <Card.Body>
             <Card.Title>Tambah Siswa</Card.Title>
