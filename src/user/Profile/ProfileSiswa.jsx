@@ -8,7 +8,7 @@ export default class ProfileSiswa extends Component {
   constructor(props) {
     super(props);
     const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
-
+    document.title = "User | Profile";
     this.state = {
       id: id,
       siswa_nis: "",
@@ -142,8 +142,6 @@ export default class ProfileSiswa extends Component {
                       disabled
                     />
                   </Form.Group>
-                </Col>
-                <Col md={5}>
                   <Form.Group className="mb-3">
                     <Form.Label>
                       Jenis Kelamin
@@ -156,6 +154,8 @@ export default class ProfileSiswa extends Component {
                       disabled
                     ></Form.Control>
                   </Form.Group>
+                </Col>
+                <Col md={5}>
                   <Form.Group className="mb-3">
                     <Form.Label>
                       Kelas<span className="text-danger">*</span>

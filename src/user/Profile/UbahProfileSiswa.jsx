@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default class UbahProfileSiswa extends Component {
   constructor(props) {
     super(props);
-    document.title = "Siswa | Ubah Profile";
+    document.title = "User | Ubah Profile";
     const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
     this.state = {
       id: id,
@@ -91,7 +91,7 @@ export default class UbahProfileSiswa extends Component {
 
     return (
       <div>
-        <Card>
+        {/* <Card>
           <Card.Body>
             <Breadcrumb
               style={{
@@ -108,12 +108,15 @@ export default class UbahProfileSiswa extends Component {
               <Breadcrumb.Item active>Ubah</Breadcrumb.Item>
             </Breadcrumb>
           </Card.Body>
-        </Card>
+        </Card> */}
         <br />
+        {/* <Card.Title> */}
+        <h3 style={{ paddingBottom: "10px" }}>Ubah Profile</h3>
+        {/* <br /> */}
         <Card style={{ color: "black" }}>
           <Card.Body>
-            <Card.Title>Ubah Profile</Card.Title>
-            <hr />
+            {/* <Card.Title>Ubah Profile</Card.Title>
+            <hr /> */}
             <Form onSubmit={this.editData}>
               <Row>
                 <Col md={2}>
