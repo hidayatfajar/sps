@@ -15,6 +15,8 @@ export default class Login extends Component {
       dataError: "",
       errorMessage: "",
       status: "",
+      isAuth: false,
+      nama: "",
     };
   }
   login = (e) => {
@@ -32,24 +34,22 @@ export default class Login extends Component {
             dataError: res.data.error,
             errorMessage: res.data.message,
             status: res.data.status,
+            nama: res.data.nama,
           });
-
           if (this.state.dataError) {
           } else {
             localStorage.setItem(
               "dataAdmin",
               JSON.stringify({
                 id: res.data.admin_id,
-                email: res.data.email,
                 nama: res.data.nama,
-                password: res.data.password,
-                status: res.data.status,
-                token: res.data.token,
               })
             );
+            localStorage.setItem("token", res.data.token);
+            //
             this.props.history.push({
-              pathname : "/admin",
-              nama : res.data.nama
+              pathname: "/admin",
+              nama: this.state.nama,
             });
           }
         })
@@ -68,10 +68,10 @@ export default class Login extends Component {
     });
   };
   render() {
-    const loggedIn = localStorage.getItem("dataAdmin");
-    if (loggedIn) {
-      this.props.history.push("/admin");
-    }
+    // const loggedIn = localStorage.getItem("dataAdmin");
+    // if (loggedIn) {
+    //   this.props.history.push("/admin");
+    // }
     return (
       <div
         className="background"
@@ -258,7 +258,7 @@ export default class Login extends Component {
                         backgroundColor: "#ffff",
                         fontWeight: "bold",
                         borderRadius: "10px",
-                        marginBottom : "10px"
+                        marginBottom: "10px",
                       }}
                     >
                       L O G I N

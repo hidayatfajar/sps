@@ -43,13 +43,11 @@ export default class Dashboard extends Component {
       });
     });
     axios.get("https://api-sps.my.id/total/jurusan").then((res) => {
-      
       this.setState({
         totalJurusan: res.data.total,
       });
     });
     axios.get("https://api-sps.my.id/total/pos").then((res) => {
-      
       this.setState({
         totalPos: res.data.total,
       });
@@ -71,12 +69,9 @@ export default class Dashboard extends Component {
     });
   }
   render() {
-
     const bebas = this.state.bebas;
     const bulanan = this.state.bulanan;
-    const onChange = (date) => {
-      
-    };
+    const onChange = (date) => {};
 
     const columns = [
       {
@@ -114,10 +109,12 @@ export default class Dashboard extends Component {
         text: "Petugas",
       },
     ];
-    const defaultSorted = [{
-      dataField: 'siswa_nama',
-      order: 'desc'
-    }];
+    const defaultSorted = [
+      {
+        dataField: "siswa_nama",
+        order: "desc",
+      },
+    ];
     const column = [
       {
         dataField: "siswa_nama",
@@ -199,7 +196,7 @@ export default class Dashboard extends Component {
                   </Col>
                   <Col md={9} className="content">
                     <h1> {this.state.totalPos}</h1>
-                    <h6 >Tipe Pembayaran</h6>
+                    <h6>Tipe Pembayaran</h6>
                   </Col>
                 </Row>
               </Card>

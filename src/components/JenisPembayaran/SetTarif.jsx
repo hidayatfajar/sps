@@ -15,7 +15,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 export default class SetTarif extends Component {
   constructor(props) {
     super(props);
@@ -46,10 +45,9 @@ export default class SetTarif extends Component {
     axios
       .get(`https://api-sps.my.id/pembayaran/${this.state.pembayaran_id}`)
       .then((res) => {
-        
         this.setState({
           tipe: res.data[0].pembayaran_tipe,
-          nama_pos : res.data[0].pos_nama
+          nama_pos: res.data[0].pos_nama,
         });
       });
   };
@@ -122,7 +120,6 @@ export default class SetTarif extends Component {
                 // this.props.history.push("/pembayaran");x
               });
           }
-          
         }
       });
     } else {
@@ -159,10 +156,8 @@ export default class SetTarif extends Component {
           <br></br>
           <Card style={{ color: "black" }}>
             <Card.Body>
-              <Card.Title>
-                Set Tarif
-              </Card.Title>
-              <hr/>
+              <Card.Title>Set Tarif</Card.Title>
+              <hr />
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>
@@ -222,19 +217,19 @@ export default class SetTarif extends Component {
                       onChange={this.handleChange}
                     />
                   </InputGroup>
-                    <div>
-                      {this.validator.message(
-                        "tarif",
-                        this.state.tarif,
-                        `required`,
-                        {
-                          className: "text-danger",
-                          messages: {
-                            required: "Masukkan tarif!",
-                          },
-                        }
-                      )}
-                    </div>
+                  <div>
+                    {this.validator.message(
+                      "tarif",
+                      this.state.tarif,
+                      `required`,
+                      {
+                        className: "text-danger",
+                        messages: {
+                          required: "Masukkan tarif!",
+                        },
+                      }
+                    )}
+                  </div>
                 </Form.Group>
                 <Button variant="outline-primary" type="submit">
                   Set Tarif

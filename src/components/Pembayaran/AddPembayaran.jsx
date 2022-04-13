@@ -5,7 +5,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-
 export default class AddPembayaran extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +16,7 @@ export default class AddPembayaran extends Component {
       data: [],
       nominal: "",
       keterangan: "",
-      periode : ""
+      periode: "",
     };
   }
   handleChange = (e) => {
@@ -37,7 +36,6 @@ export default class AddPembayaran extends Component {
       axios
         .post(`https://api-sps.my.id/bebas/bayar/${this.state.id}`, data)
         .then((res) => {
-          
           if (res.data.error) {
             Swal.fire({
               icon: "error",
@@ -50,7 +48,13 @@ export default class AddPembayaran extends Component {
               title: "Berhasil!",
               text: `Pembayaran Berhasil!`,
             });
-            this.props.history.push({pathname :"/admin/pembayaran" , state: {nis : `${this.state.nis}`, periode : `${this.state.periode}`}});
+            this.props.history.push({
+              pathname: "/admin/pembayaran",
+              state: {
+                nis: `${this.state.nis}`,
+                periode: `${this.state.periode}`,
+              },
+            });
           }
         })
         .catch((error) => {});
@@ -68,15 +72,14 @@ export default class AddPembayaran extends Component {
       });
     });
 
-    if(this.props.location){
+    if (this.props.location) {
       this.setState({
-        nis : this.props.location.state.nis,
-        periode : this.props.location.state.periode
-      })
+        nis: this.props.location.state.nis,
+        periode: this.props.location.state.periode,
+      });
     }
-
   }
-  
+
   render() {
     return (
       <Card style={{ color: "black" }}>
@@ -165,7 +168,15 @@ export default class AddPembayaran extends Component {
               Bayar
             </Button>
             &ensp;
-            <Link to={{pathname : "/admin/pembayaran/", state : {nis : `${this.state.nis}`, periode : `${this.state.periode}`}}}>
+            <Link
+              to={{
+                pathname: "/admin/pembayaran/",
+                state: {
+                  nis: `${this.state.nis}`,
+                  periode: `${this.state.periode}`,
+                },
+              }}
+            >
               <Button variant="outline-danger" type="submit">
                 Batal
               </Button>

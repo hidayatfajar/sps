@@ -78,9 +78,7 @@ export default class DataSiswa extends Component {
               });
             }
           })
-          .catch((err) => {
-            
-          });
+          .catch((err) => {});
         this.props.history.push("/admin/siswa");
       }
     });

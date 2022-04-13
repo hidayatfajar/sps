@@ -54,7 +54,6 @@ export default class PembayaranBebas extends Component {
     axios
       .get(`https://api-sps.my.id/user/pembayaran/bebas/${id}`)
       .then((res) => {
-        
         if (res.data.error === true) {
           this.setState({
             data: "",
@@ -77,7 +76,6 @@ export default class PembayaranBebas extends Component {
   getDetails = () => {
     const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
     axios.get(`https://api-sps.my.id/user/detail/bebas/${id}`).then((res) => {
-      
       this.setState({
         details: true,
         data_details: res.data,
@@ -92,7 +90,6 @@ export default class PembayaranBebas extends Component {
   }
 
   render() {
-    
     const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
 
     const detail = [
@@ -106,12 +103,8 @@ export default class PembayaranBebas extends Component {
       },
       {
         formatter: (cell, row) => {
-          return(
-            <div>
-             Rp. {row.d_bebas_bayar.toLocaleString("id-ID",)}
-            </div>
-          )
-        }
+          return <div>Rp. {row.d_bebas_bayar.toLocaleString("id-ID")}</div>;
+        },
       },
       {
         dataField: "d_bebas_tanggal",
@@ -157,13 +150,9 @@ export default class PembayaranBebas extends Component {
       },
       {
         formatter: (cell, row) => {
-          return (
-            <div>
-              Rp. {row.d_bebas_bayar.toLocaleString("id-ID",)}
-            </div>
-          )
+          return <div>Rp. {row.d_bebas_bayar.toLocaleString("id-ID")}</div>;
         },
-        text : "Nominal"
+        text: "Nominal",
       },
       // {
       //   dataField: "d_bebas_tanggal",
@@ -210,7 +199,7 @@ export default class PembayaranBebas extends Component {
               {`${row.pos_nama} - T.A ${row.periode_mulai}/${row.periode_akhir}`}
             </div>
           );
-        }
+        },
       },
       {
         text: "Jumlah",
@@ -293,7 +282,7 @@ export default class PembayaranBebas extends Component {
           );
         },
 
-        headerAlign: "center"
+        headerAlign: "center",
       },
       {
         text: "Aksi",
@@ -342,7 +331,7 @@ export default class PembayaranBebas extends Component {
 
             {/* Tampilan Mobile */}
             <div className="mobile">
-            <BootstrapTable
+              <BootstrapTable
                 keyField="id"
                 data={
                   this.state.details === false

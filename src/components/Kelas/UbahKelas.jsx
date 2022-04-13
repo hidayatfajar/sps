@@ -71,7 +71,7 @@ export default class UbahKelas extends Component {
             });
             this.props.history.push("/admin/kelas");
           }
-        }) 
+        })
         .catch((err) => {});
     } else {
       this.validator.showMessages();
@@ -109,7 +109,9 @@ export default class UbahKelas extends Component {
             <Form onSubmit={this.editData}>
               <Form.Group className="mb-3">
                 <hr />
-                <Form.Label>Kelas Id<span className="text-danger">*</span></Form.Label>
+                <Form.Label>
+                  Kelas Id<span className="text-danger">*</span>
+                </Form.Label>
                 <Form.Control
                   name="kelas_id"
                   id="kelas_id"
@@ -122,7 +124,9 @@ export default class UbahKelas extends Component {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Nama Kelas<span className="text-danger">*</span></Form.Label>
+                <Form.Label>
+                  Nama Kelas<span className="text-danger">*</span>
+                </Form.Label>
                 <Form.Control
                   name="kelas_nama"
                   id="kelas_nama"
