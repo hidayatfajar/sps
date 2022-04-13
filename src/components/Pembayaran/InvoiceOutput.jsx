@@ -5,14 +5,15 @@ import Icon from "../Assets/Invoice/Sukses.svg";
 import watermark from "../Assets/Invoice/Watermark.svg";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import InvoicePrint from "./InvoicePrint";
 
 export default class InvoiceBebas extends Component {
   constructor(props) {
-    const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
+    // const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
     super(props);
 
     this.state = {
-      id: id,
+      id: this.props.id,
       no_transaksi: "",
       d_bebas_bayar: "",
       d_bebas_deskripsi: "",
@@ -23,11 +24,11 @@ export default class InvoiceBebas extends Component {
       kelas_nama: "",
       jurusan_nama: "",
       d_kelas_nama: "",
-      d_bebas_id: this.props.id,
+      d_bebas_id: this.props.d_bebas_id,
     };
   }
   componentDidMount = () => {
-    const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
+    // const id = JSON.parse(localStorage.getItem("dataSiswa")).id;
     axios.get(`https://api-sps.my.id/user/detail/bebas/100/6`).then((res) => {
       if (res.data.error === true) {
         this.setState({
@@ -239,12 +240,12 @@ export default class InvoiceBebas extends Component {
                   )}
                   content={() => this.componentRef}
                 />
-                {/* <div style={{ display: "none" }}>
-                  <InvoicePrint
-                    bulanan_id={this.state.id}
+                <div style={{ display: "none" }}>
+                <InvoicePrint
                     ref={(el) => (this.componentRef = el)}
+                    id={this.state.d_bebas_id}
                   />
-                </div> */}
+                </div>
                 {/* <InvoicePrint ref={el => (this.componentRef = el)} /> */}
                 &ensp;
                 <Link to="/user/transaksi/">

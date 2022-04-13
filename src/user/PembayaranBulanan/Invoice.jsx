@@ -27,7 +27,7 @@ export default class Invoice extends Component {
   }
   componentDidMount() {
     axios
-      .get(`https://api-sps.my.id/invoice/bulanan/${this.state.id}`)
+      .get(`https://api-sps.my.id/user/invoice/bulanan/${this.state.id}`)
       .then((res) => {
         console.log(res);
         if (res.data.error === true) {

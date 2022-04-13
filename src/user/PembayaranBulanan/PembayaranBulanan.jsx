@@ -67,18 +67,17 @@ export default class PembayaranBulanan extends Component {
         text: "No",
         sort: true,
         align: "center",
+
         headerStyle: {
-          width: "5%",
+          width: "10%",
           textAlign: "center",
         },
       },
       {
         dataField: "month_nama",
         text: "Bulan",
-        align: "center",
         headerStyle: {
           width: "15%",
-          textAlign: "center",
         },
       },
       {
@@ -90,10 +89,8 @@ export default class PembayaranBulanan extends Component {
             return <Badge bg="danger">Belum Lunas</Badge>;
           }
         },
-        align: "center",
-        headerAlign: "center",
         headerStyle: {
-          width: "10%",
+          width: "15%",
         },
       },
       {
@@ -141,11 +138,9 @@ export default class PembayaranBulanan extends Component {
           } else {
             return <div>-</div>;
           }
-        },
-        align: "center",
+        }, 
         headerStyle: {
-          width: "20%",
-          textAlign: "center",
+          width: "20%", 
         },
       },
       {
@@ -158,16 +153,14 @@ export default class PembayaranBulanan extends Component {
           }
         },
         headerStyle: {
-          width: "10%",
+          width: "20%",
         },
       },
       {
         dataField: "admin_nama",
         text: "Petugas",
-        align: "center",
         headerStyle: {
           width: "15%",
-          textAlign: "center",
         },
       },
       {

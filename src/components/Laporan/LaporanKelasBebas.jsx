@@ -28,9 +28,7 @@ export default class LaporanKelas extends Component {
     this.validator = new SimpleReactValidator();
     this.state = {
       data_bebas: [],
-      data_bulanan: [],
       total_bebas: "",
-      total_bulanan: "",
       data_kelas: [],
       data_jurusan: [],
       data_d_kelas: [],
@@ -72,6 +70,7 @@ export default class LaporanKelas extends Component {
       axios
         .post("https://api-sps.my.id/laporan/kelas/bebas", data)
         .then((res) => {
+          console.log(res)
           if (res.data.error !== true) {
             this.setState({
               data_bebas: res.data.data,
@@ -79,26 +78,7 @@ export default class LaporanKelas extends Component {
             });
           } else {
             this.setState({
-              data_bebas: "",
-            });
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Data tidak ditemukan",
-            });
-          }
-        });
-      axios
-        .post("https://api-sps.my.id/laporan/kelas/bulanan", data)
-        .then((res) => {
-          if (res.data.error !== true) {
-            this.setState({
-              data_bulanan: res.data.data,
-              total_bulanan: res.data.sisa_tagihan_kelas,
-            });
-          } else {
-            this.setState({
-              data_bulanan: "",
+              data_bebas: [],
             });
             Swal.fire({
               icon: "error",
@@ -121,12 +101,6 @@ export default class LaporanKelas extends Component {
     });
   };
   render() {
-    // group data_bulanan by periode
-    const bulanan = this.state.data_bulanan.reduce((r, a) => {
-      r[a.periode] = [...(r[a.periode] || []), a];
-      return r;
-    }, {});
-
     const bebas = this.state.data_bebas.reduce((r, a) => {
       r[a.periode] = [...(r[a.periode] || []), a];
       return r;
@@ -151,52 +125,27 @@ export default class LaporanKelas extends Component {
       // add title on first row merged cells
       // then push down rows with data
       const rows = [];
-      // check if apiData is from bebas or bulanan
-      // if bebas, rows = [["Nama Siswa", "Kelas", "Periode", "Sisa Tagihan"]]
-      // if bulanan, rows = [["Nama Siswa", "Kelas", "Periode", "Sisa Bulan", "Sisa Tagihan"]]
-      console.log(apiData[0].sisa_bulan);
-      if (apiData[0].sisa_bulan === undefined) {
-        rows.push(["Nama Siswa", "Kelas", "Periode", "Sisa Tagihan"]);
-        Object.keys(groupedData).forEach((key) => {
-          groupedData[key].forEach((item) => {
-            rows.push([
-              item.siswa_nama,
-              item.kelas_nama +
-                " " +
-                item.jurusan_nama +
-                " " +
-                item.d_kelas_nama,
-              item.periode,
-              item.sisa_tagihan,
-            ]);
-          });
+      const rowsWidth = [
+        { wch: 10 },
+        { wch: 10 },
+        { wch: 10 },
+        { wch: 10 },
+        { wch: 10 },
+      ];
+      rows.push(["Nama Siswa", "Kelas", "Periode", "Sisa Tagihan"]);
+      Object.keys(groupedData).forEach((key) => {
+        groupedData[key].forEach((item) => {
+          rows.push([
+            item.siswa_nama,
+            item.kelas_nama + " " + item.jurusan_nama + " " + item.d_kelas_nama,
+            item.periode,
+            item.sisa_tagihan,
+          ]);
         });
-      } else {
-        rows.push([
-          "Nama Siswa",
-          "Kelas",
-          "Periode",
-          "Sisa Bulan",
-          "Sisa Tagihan",
-        ]);
-        Object.keys(groupedData).forEach((key) => {
-          groupedData[key].forEach((item) => {
-            rows.push([
-              item.siswa_nama,
-              item.kelas_nama +
-                " " +
-                item.jurusan_nama +
-                " " +
-                item.d_kelas_nama,
-              item.periode,
-              item.sisa_bulan,
-              item.sisa_tagihan,
-            ]);
-          });
-        });
-      }
+      });
       // convert array of arrays into workbook
       const ws = XLSX.utils.aoa_to_sheet(rows);
+      ws["!cols"] = rowsWidth;
       const wb = XLSX.utils.book_new();
 
       XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
@@ -221,73 +170,6 @@ export default class LaporanKelas extends Component {
     const data = this.state.data_bebas;
     const as = [];
     const total_bebas = this.state.total_bebas;
-
-    // data bulanan
-    const data2 = this.state.data_bulanan;
-    const total_bulanan = this.state.total_bulanan;
-
-    // bulanan
-    const sisa_bulanan = [
-      {
-        text: "Total Sisa Tagihan Kelas",
-        headerStyle: (colum, colIndex) => {
-          return { width: "70%", fontWeight: "light" };
-        },
-      },
-      {
-        // if sisa_tagihan_kelas is undefined, then it will be 0
-        text: total_bulanan
-          ? `Rp. ${parseInt(total_bulanan).toLocaleString()}`
-          : `Rp. 0`,
-      },
-    ];
-    const data_bulanan = [
-      {
-        text: "Nama Siswa",
-        dataField: "siswa_nama",
-        headerStyle: {
-          width: "30%",
-        },
-      },
-      {
-        text: "Kelas",
-        formatter: (cell, row) => {
-          return (
-            <div>
-              {`${row.kelas_nama} ${row.jurusan_nama} ${row.d_kelas_nama}`}
-            </div>
-          );
-        },
-        headerStyle: {
-          width: "20%",
-        },
-      },
-      {
-        dataField: "periode",
-        text: "periode",
-        headerStyle: {
-          width: "20%",
-        },
-      },
-      {
-        text: "Sisa Bulan",
-        dataField: "sisa_bulan",
-        headerStyle: {
-          width: "20%",
-        },
-      },
-      {
-        text: "Sisa Tagihan",
-        headerStyle: {
-          width: "30%",
-        },
-        formatter: (cell, row) => {
-          return (
-            <div>{`Rp. ${parseInt(row.sisa_tagihan).toLocaleString()}`}</div>
-          );
-        },
-      },
-    ];
 
     // bebas
     const sisa_bebas = [
@@ -346,7 +228,7 @@ export default class LaporanKelas extends Component {
       <div>
         <Card style={{ color: "black" }}>
           <Card.Body>
-            <Card.Title>Laporan Kelas</Card.Title>
+            <Card.Title>Laporan Kelas Bebas</Card.Title>
             <hr />
             <Form onSubmit={this.handleSubmit}>
               <div className="d-flex">
@@ -467,113 +349,54 @@ export default class LaporanKelas extends Component {
             </Form>
             {/* <button onClick={(e) => exportToCSV(data2, 'fileName')}>Export</button> */}
             <br />
-            <Tabs
-              defaultActiveKey="bulan"
-              id="uncontrolled-tab-example"
-              className="mb-3"
-            >
-              <Tab eventKey="bulan" title="Bulanan">
-                <br />
-                <br />
-                <BootstrapTable
-                  keyField="id"
-                  data={data2}
-                  columns={data_bulanan}
-                  striped
-                  hover
-                  condensed
-                  bordered={false}
-                  noDataIndication="Data tidak ditemukan"
-                />
-                <BootstrapTable
-                  keyField="id"
-                  data={as}
-                  columns={sisa_bulanan}
-                  bordered={false}
-                />
-                {this.state.total_bulanan ? (
-                  <Row>
-                    <Col>
-                      <Button
-                        onClick={(e) =>
-                          exportToCSV(
-                            data2,
-                            `Laporan-Bulanan ${this.state.kelas}${this.state.jurusan}${this.state.d_kelas}`
-                          )
-                        }
-                      >
-                        Ekspor Excel
-                      </Button>
-                    </Col>
-                    <Col>
-                      <div className="btn-print-download ">
-                        <ReactToPrint
-                          trigger={() => (
-                            <Button variant="danger">Download PDF</Button>
-                          )}
-                          content={() => this.componentRef}
-                        />
-                        <div style={{ display: "none" }}>
-                          <Laporan
-                            data={bulanan}
-                            ref={(el) => (this.componentRef = el)}
-                          />
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                ) : null}
-              </Tab>
-              <Tab eventKey="bebas" title="Bebas">
-                <br />
-                <br />
-                <BootstrapTable
-                  keyField="id"
-                  data={data}
-                  columns={data_bebas}
-                  striped
-                  hover
-                  condensed
-                  bordered={false}
-                  noDataIndication="Data tidak ditemukan"
-                />
-                <BootstrapTable
-                  keyField="id"
-                  data={as}
-                  columns={sisa_bebas}
-                  bordered={false}
-                />
-                {this.state.total_bebas ? (
-                  <div>
-                    <Button
-                      onClick={(e) =>
-                        exportToCSV(
-                          data,
-                          `Laporan-Bebas ${this.state.kelas}${this.state.jurusan}${this.state.d_kelas}`
-                        )
-                      }
+            <BootstrapTable
+              keyField="id"
+              data={data}
+              columns={data_bebas}
+              striped
+              hover
+              condensed
+              bordered={false}
+              noDataIndication="Data tidak ditemukan"
+            />
+            <BootstrapTable
+              keyField="id"
+              data={as}
+              columns={sisa_bebas}
+              bordered={false}
+            />
+            {this.state.total_bebas ? (
+              <Row>
+                <Col xs="auto">
+                <Button
+                  onClick={(e) =>
+                    exportToCSV(
+                      data,
+                      `Laporan-Bebas ${this.state.kelas}${this.state.jurusan}${this.state.d_kelas}`
+                      )
+                    }
                     >
-                      Ekspor Excel
-                    </Button>
-                    &ensp;
-                    <div className="btn-print-download ">
-                      <ReactToPrint
-                        trigger={() => (
-                          <Button variant="danger">Download PDF</Button>
-                        )}
-                        content={() => this.componentRef}
+                  Ekspor Excel
+                </Button>
+              </Col>
+              <Col>
+                <div className="btn-print-download ">
+                  <ReactToPrint
+                    trigger={() => (
+                      <Button variant="danger">Download PDF</Button>
+                    )}
+                    content={() => this.componentRef}
+                    />
+                  <div style={{ display: "none" }}>
+                    <CetakLaporanBebas
+                      data={bebas}
+                      ref={(el2) => (this.componentRef = el2)}
                       />
-                      <div style={{ display: "none" }}>
-                        <CetakLaporanBebas
-                          data={bebas}
-                          ref={(el) => (this.componentRef = el)}
-                        />
-                      </div>
-                    </div>
                   </div>
-                ) : null}
-              </Tab>
-            </Tabs>
+                </div>
+                      </Col>
+              </Row>
+            ) : null}
           </Card.Body>
         </Card>
       </div>

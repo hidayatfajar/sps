@@ -35,7 +35,6 @@ import navlogo from "../Assets/logotextwhite.svg";
 import Swal from "sweetalert2";
 // Import File
 import img from "../Assets/user.jpg";
-import Invoice from '../Pembayaran/Invoice'
 
 // Admin
 
@@ -83,12 +82,14 @@ import UploadSiswa from "../Siswa/UploadSiswa";
 import LaporanBulanan from "../Laporan/LaporanBulanan"
 
 import LaporanAngkatan from './../Laporan/LaporanAngkatan';
-import LaporanKelas from './../Laporan/LaporanKelas';
+import LaporanKelas from '../Laporan/LaporanKelasBebas';
+import LaporanKelasBulanan from "../Laporan/LaporanKelasBulanan";
 import CetakLaporanKelas from '../Laporan/CetakLaporanKelas'
 
 // import LaporanKelas from "../Laporan/LaporanKelas";
 import DetailSiswa from './../DetailSiswa/DetailSiswa';
 import InvoiceBebas from './../Pembayaran/InvoiceBebas';
+import Invoice from "../Pembayaran/Invoice";
 import Kelulusan from './../Kelulusan/Kelulusan';
 
 const SideBar = () => {
@@ -422,9 +423,11 @@ const SideBar = () => {
                   <Link to="/admin/laporan/angkatan">
                     <li>Laporan Angkatan </li>
                   </Link>
-                  <Link to="/admin/laporan/kelas">
-                    <li>Laporan Kelas </li>
-
+                  <Link to="/admin/laporan/kelas-bebas">
+                    <li>Laporan Kelas Bebas</li>
+                  </Link>
+                  <Link to="/admin/laporan/kelas-bulan">
+                    <li>Laporan Kelas Bulanan </li>
                   </Link>
                 </ul>
               </div>
@@ -578,8 +581,13 @@ const SideBar = () => {
           />
           <ProtectedRoute
             exact
-            path="/admin/laporan/kelas"
+            path="/admin/laporan/kelas-bebas"
             component={LaporanKelas}
+          />
+          <ProtectedRoute 
+            exact
+            path="/admin/laporan/kelas-bulan"
+            component={LaporanKelasBulanan}
           />
           <ProtectedRoute
             exact
@@ -595,7 +603,12 @@ const SideBar = () => {
           <ProtectedRoute exact path="/admin/laporan/cetak" component={CetakLaporanKelas} />
           <ProtectedRoute
             exact
-            path="/admin/invoice/:id/:d_bebas_id"
+            path="/admin/invoice/:siswa_id/:d_bebas_id"
+            component={InvoiceBebas}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/invoice/:id/"
             component={Invoice}
           />
         </div>

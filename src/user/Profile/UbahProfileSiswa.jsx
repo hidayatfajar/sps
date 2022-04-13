@@ -127,7 +127,7 @@ export default class UbahProfileSiswa extends Component {
                       }}
                     >
                       <img
-                        src={"https://api-sps.my.id/" + this.state.gambar}
+                        src={"https://api-sps.my.id/public/images/" + this.state.gambar}
                         width={160}
                         height={160}
                         style={{

@@ -265,7 +265,11 @@ export default class InvoiceBebas extends Component {
                   </Button>
                 </Link>
                 <div style={{ display: "none" }}>
-                  <InvoiceOutput ref={(el) => (this.componentRef = el)} />
+                <InvoiceOutput
+                    ref={(el) => (this.componentRef = el)}
+                    d_bebas_id={this.state.d_bebas_id}
+                    id={this.state.id}
+                  />
                 </div>
               </div>
             </div>
