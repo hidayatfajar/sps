@@ -282,7 +282,7 @@ export default class PembayaranBebas extends Component {
           );
         },
 
-        headerAlign: "center",
+        // headerAlign: "center",
       },
       {
         text: "Aksi",
