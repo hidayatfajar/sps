@@ -43,6 +43,7 @@ import icon9 from "../Assets/LandingPageImg/keamanan.svg";
 
 import guru1 from "../Assets/LandingPageImg/guru1.svg";
 import guru2 from "../Assets/LandingPageImg/guru2.svg";
+import guru3 from "../Assets/LandingPageImg/guru3.svg";
 
 import "./LandingPage.css";
 
@@ -337,7 +338,7 @@ export default class LandingPage extends Component {
                         </Col>
                         <Col md={5}>
                           <div className="profile-feedbacks">
-                            <h6>Andi Susandi S.Kom</h6>
+                            <h6>Andi Susandi, S.Kom</h6>
                             <p>Ketua Pemrograman RPL</p>
                           </div>
                         </Col>
@@ -361,7 +362,7 @@ export default class LandingPage extends Component {
                         </Col>
                         <Col md={3}>
                           <div className="profile-feedbacks">
-                            <h6>Mety Indriati, SS</h6>
+                            <h6>Mety Indriati, S.S</h6>
                             <p>Staff Pembantu Pimpinan</p>
                           </div>
                         </Col>
@@ -373,6 +374,31 @@ export default class LandingPage extends Component {
                               cepat karena dimasa depan teknologi akan semakin
                               canggih dan semua pekerjaan dikerjakan dengan
                               system komputerisasi."
+                            </h6>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="content">
+                      <Row>
+                        <Col md={2}>
+                          <Image className="guru-img" src={guru3} />
+                        </Col>
+                        <Col md={4}>
+                          <div className="profile-feedbacks">
+                            <h6>Retno Anjani, S.Pd</h6>
+                            <p>Guru Bahasa Inggris</p>
+                          </div>
+                        </Col>
+                        <Col md={6}>
+                          <div className="testimoni">
+                            <h6>
+                              "Bagus, sangat berguna untuk mempermudah
+                              pembayaran spp secara online. Didukung juga dengan
+                              tampilan aplikasi yang fresh dan user friendly."
                             </h6>
                           </div>
                         </Col>
@@ -412,7 +438,7 @@ export default class LandingPage extends Component {
                         <li>Teknik Komputer dan Jaringan</li>
                         <li>Teknik Elektronika Industri</li>
                         <li>Teknik dan Bisnis Sepeda Motor</li>
-                        <li>Akuntansi dan Keungan Lembaga</li>
+                        <li>Akuntansi dan Keuangan Lembaga</li>
                         <li>Teknik Energi Biomassa</li>
                       </ul>
                     </p>
