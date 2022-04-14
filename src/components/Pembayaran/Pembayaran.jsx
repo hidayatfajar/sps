@@ -57,6 +57,7 @@ export default class Pembayaran extends Component {
           } else {
             this.setState({
               visible: true,
+              watching : false
             });
           }
         })
@@ -244,9 +245,8 @@ export default class Pembayaran extends Component {
                     console.log(error);
                   }
                 }}
-                style={{ width: "100%" }}
+                style={{ width: "25%" }}
               />
-              <p>{this.state.hasil}</p>
               {/* <QRScan onFind={this.onFind} style={{width : "40px", height : "40px"}}/> */}
             </center>
           </Card>

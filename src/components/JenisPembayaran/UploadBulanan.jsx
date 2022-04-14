@@ -55,7 +55,7 @@ export default class UploadBulanan extends Component {
             title: "Good Job!",
             text: `${res.data.message}`,
           });
-          this.props.history.push("/admin/jenispembayaran");
+          this.props.history.push("/admin/jenis-pembayaran");
         }
       })
       .catch((err) => {});
@@ -79,7 +79,7 @@ export default class UploadBulanan extends Component {
                 <Link to="/admin/">Home</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                <Link to="/admin/jenispembayaran/">Data</Link>
+                <Link to="/admin/jenis-pembayaran/">Data</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item active>Upload</Breadcrumb.Item>
             </Breadcrumb>
@@ -109,7 +109,7 @@ export default class UploadBulanan extends Component {
                         Upload
                       </Button>
                       &ensp;
-                      <Link to="/admin/jenispembayaran">
+                      <Link to="/admin/jenis-pembayaran">
                         <Button variant="outline-danger" type="submit">
                           Batal
                         </Button>

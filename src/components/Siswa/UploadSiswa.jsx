@@ -41,13 +41,17 @@ export default class UploadSiswa extends Component {
       .post("https://api-sps.my.id/siswa/upload", formData)
       .then((res) => {
         this.setState({
-          selectedFile: null,
+          selectedFile: e.target.value = null,
         });
         if (res.data.error === true) {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: `${res.data.message}`,
+            
+          });
+          this.setState({
+            selectedFile: e.target.value = null,
           });
         } else {
           Swal.fire({
@@ -55,6 +59,7 @@ export default class UploadSiswa extends Component {
             title: "Good Job!",
             text: `${res.data.message}`,
           });
+          
           this.props.history.push("/admin/siswa");
         }
       })

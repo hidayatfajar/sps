@@ -113,7 +113,7 @@ export default class SetTarif extends Component {
                 <Link to="/admin">Home</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                <Link to="/admin/jenispembayaran/">Data</Link>
+                <Link to="/admin/jenis-pembayaran/">Data</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item active>Ubah</Breadcrumb.Item>
             </Breadcrumb>

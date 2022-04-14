@@ -17,6 +17,7 @@ export default class InformasiSIswa extends Component {
       nis: "",
       nama: "",
       jenis_kelamin: "",
+      status : "",
       siswa_id: "",
       bebas_id: "",
       periode: this.props.periode,
@@ -36,6 +37,7 @@ export default class InformasiSIswa extends Component {
     // const idp = this.props.periodes.id;
 
     axios.get(`https://api-sps.my.id/siswa_nis/${id}`).then((res) => {
+      console.log(res)
       if (res.data[0].siswa_id === undefined) {
         Swal.fire({
           icon: "error",
@@ -50,6 +52,7 @@ export default class InformasiSIswa extends Component {
           periode: "",
           data: "",
           databulanan: "",
+          status : ""
         });
       } else {
         this.setState({
@@ -58,6 +61,7 @@ export default class InformasiSIswa extends Component {
           jenis_kelamin: res.data[0].siswa_gender,
           siswa_id: res.data[0].siswa_id,
           periode: this.props.periode,
+          status : res.data[0].siswa_status
         });
         const nis = this.props.nis;
         const periode = this.props.periode;
@@ -336,6 +340,8 @@ export default class InformasiSIswa extends Component {
     ];
     let gender = this.state.jenis_kelamin;
     gender === "P" ? (gender = "Perempuan") : (gender = "Laki-laki");
+    let status = this.state.status;
+    status == 0 ? (status = "Tidak Aktif")  : (status = "Aktif");
     return (
       <div>
         <Card style={{ color: "black" }}>
@@ -359,6 +365,10 @@ export default class InformasiSIswa extends Component {
                 <tr>
                   <td>Jenis Kelamin</td>
                   <td>{gender}</td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td>{status}</td>
                 </tr>
               </tbody>
             </Table>

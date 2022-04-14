@@ -9,6 +9,8 @@ import {
     Tabs,
     Tab,
   } from "react-bootstrap";
+  import { faSearch } from "@fortawesome/free-solid-svg-icons";
+  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import BootstrapTable from "react-bootstrap-table-next";
   import axios from "axios";
   import SimpleReactValidator from "simple-react-validator";
@@ -347,7 +349,7 @@ export default class LaporanKelasBulanan extends Component {
                     <Form.Group as={Row} className="mb-3">
                       <Col md="auto">
                         <Button type="submit" variant="outline-primary">
-                          Q
+                        <FontAwesomeIcon icon={faSearch} />
                         </Button>
                       </Col>
                     </Form.Group>

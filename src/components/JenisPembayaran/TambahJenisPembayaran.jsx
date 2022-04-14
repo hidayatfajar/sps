@@ -112,7 +112,7 @@ export default class AddJenisPembayaran extends Component {
                 <Link to="/admin">Home</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                <Link to="/admin/jenispembayaran/">Data</Link>
+                <Link to="/admin/jenis-pembayaran/">Data</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item active>Tambah</Breadcrumb.Item>
             </Breadcrumb>
