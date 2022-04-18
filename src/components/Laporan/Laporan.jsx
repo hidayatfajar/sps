@@ -63,25 +63,25 @@ export default class Laporan extends Component {
                 );
               })}
             </tr>
-            <tr style={{ border: "1px solid black", textAlign: "center" }}>
-              <th style={{ textAlign: "left" }}>Nama </th>
-              <th>Sisa Bulan</th>
-              <th>Sisa Tagihan</th>
-              <th>Sisa Bulan</th>
-              <th>Sisa Tagihan</th>
-              <th>Sisa Bulan</th>
-              <th>Sisa Tagihan</th>
+            <tr style={{ border: "1px solid black" }}>
+              <th>Nama </th>
+              <th style={{ textAlign: "center" }}>Sisa Bulan</th>
+              <th style={{ textAlign: "center" }}>Sisa Tagihan</th>
+              <th style={{ textAlign: "center" }}>Sisa Bulan</th>
+              <th style={{ textAlign: "center" }}>Sisa Tagihan</th>
+              <th style={{ textAlign: "center" }}>Sisa Bulan</th>
+              <th style={{ textAlign: "center" }}>Sisa Tagihan</th>
             </tr>
             {data_arr.map((item) => {
               return (
-                <tr style={{ border: "1px solid black", textAlign: "center" }}>
-                  <td  style={{ textAlign: "left" }}>{item[0]}</td>
-                  <td>{item[1]}</td>
-                  <td>{item[2]}</td>
-                  <td>{item[3]}</td>
-                  <td>{item[4]}</td>
-                  <td>{item[5]}</td>
-                  <td>{item[6]}</td>
+                <tr style={{ border: "1px solid black"}}>
+                  <td}>{item[0]}</td>
+                  <td style={{ textAlign: "center" }}>{item[1]}</td>
+                  <td style={{ textAlign: "center" }}>{item[2]}</td>
+                  <td style={{ textAlign: "center" }}>{item[3]}</td>
+                  <td style={{ textAlign: "center" }}>{item[4]}</td>
+                  <td style={{ textAlign: "center" }}>{item[5]}</td>
+                  <td style={{ textAlign: "center" }}>{item[6]}</td>
                 </tr>
               );
             })}
