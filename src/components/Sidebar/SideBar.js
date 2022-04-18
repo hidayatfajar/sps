@@ -91,6 +91,7 @@ import DetailSiswa from './../DetailSiswa/DetailSiswa';
 import InvoiceBebas from './../Pembayaran/InvoiceBebas';
 import Invoice from "../Pembayaran/Invoice";
 import Kelulusan from './../Kelulusan/Kelulusan';
+import Laporan from "../Laporan/Laporan";
 
 const SideBar = () => {
   const admin = JSON.parse(localStorage.getItem("dataAdmin"));
@@ -611,6 +612,10 @@ const SideBar = () => {
             path="/admin/invoice/:id/"
             component={Invoice}
           />
+          <ProtectedRoute
+            exact
+            path="/admin/laporan/laporan"
+            component={Laporan} />
         </div>
       </div>
     </div>
