@@ -64,7 +64,7 @@ export default class Laporan extends Component {
               })}
             </tr>
             <tr style={{ border: "1px solid black" }}>
-              <th>Nama </th>
+              <th style={{ paddingLeft: "4px"}}>Nama </th>
               <th style={{ textAlign: "center" }}>Sisa Bulan</th>
               <th style={{ textAlign: "center" }}>Sisa Tagihan</th>
               <th style={{ textAlign: "center" }}>Sisa Bulan</th>
@@ -75,7 +75,7 @@ export default class Laporan extends Component {
             {data_arr.map((item) => {
               return (
                 <tr style={{ border: "1px solid black"}}>
-                  <td}>{item[0]}</td>
+                  <td style={{ paddingLeft: "4px"}}>{item[0]}</td>
                   <td style={{ textAlign: "center" }}>{item[1]}</td>
                   <td style={{ textAlign: "center" }}>{item[2]}</td>
                   <td style={{ textAlign: "center" }}>{item[3]}</td>
