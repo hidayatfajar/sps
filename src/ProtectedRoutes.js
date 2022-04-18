@@ -13,7 +13,7 @@ export default function ProtectedRoutes({ component: Component, ...rest }) {
       },
     };
     const response = await axios
-      .get("https://api-sps.my.id/siswa", config)
+      .get("http://localhost:8000/siswa", config)
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
@@ -39,8 +39,8 @@ export default function ProtectedRoutes({ component: Component, ...rest }) {
           <Component {...props} />
         ) : (
           <>
-            {localStorage.removeItem("dataAdmin")}
-            {localStorage.removeItem("token")}
+            {/* {localStorage.removeItem("dataAdmin")}
+            {localStorage.removeItem("token")} */}
             <Redirect to="/admin/login" />
           </>
         )
